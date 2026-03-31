@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Thumbnail Preview (Open Graph) -->
+  <meta property="og:title" content="OOMBIKKOOO">
+  <meta property="og:description" content="Restaurant vouchers for students. choose across 25 restaurant in Bremen. Login to recieve yours">
+  <meta property="og:image" content="voucher.png"> <!-- Replace with your image URL -->
+
+  <title>April Fools</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      font-family: Arial, sans-serif;
+      background: url('bg.jpg') no-repeat center center/cover;
+    }
+
+    /* Big flickering text */
+    .main-text {
+      position: relative;
+      font-size: 8vw;
+      font-weight: bold;
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      animation: glitch 1s infinite;
+    }
+
+    .main-text::before,
+    .main-text::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .main-text::before {
+      color: red;
+      z-index: -1;
+      animation: glitchTop 1s infinite;
+    }
+
+    .main-text::after {
+      color: cyan;
+      z-index: -2;
+      animation: glitchBottom 1.5s infinite;
+    }
+
+    @keyframes glitch {
+      0% { transform: none; }
+      20% { transform: skew(-2deg); }
+      40% { transform: skew(2deg); }
+      60% { transform: skew(-1deg); }
+      80% { transform: skew(1deg); }
+      100% { transform: none; }
+    }
+
+    @keyframes glitchTop {
+      0% { clip-path: inset(0 0 80% 0); transform: translate(-2px, -2px); }
+      20% { clip-path: inset(0 0 60% 0); transform: translate(2px, 2px); }
+      40% { clip-path: inset(0 0 70% 0); transform: translate(-1px, 1px); }
+      60% { clip-path: inset(0 0 50% 0); transform: translate(1px, -1px); }
+      80% { clip-path: inset(0 0 65% 0); transform: translate(-2px, 0); }
+      100% { clip-path: inset(0 0 80% 0); transform: translate(0, 0); }
+    }
+
+    @keyframes glitchBottom {
+      0% { clip-path: inset(80% 0 0 0); transform: translate(2px, 2px); }
+      20% { clip-path: inset(60% 0 0 0); transform: translate(-2px, -2px); }
+      40% { clip-path: inset(70% 0 0 0); transform: translate(1px, -1px); }
+      60% { clip-path: inset(50% 0 0 0); transform: translate(-1px, 1px); }
+      80% { clip-path: inset(65% 0 0 0); transform: translate(2px, 0); }
+      100% { clip-path: inset(80% 0 0 0); transform: translate(0, 0); }
+    }
+
+    /* Smaller text */
+    .sub-text {
+      font-size: 2vw;
+      margin-top: 10px;
+      animation: colorShift 3s infinite linear;
+    }
+
+    /* Flicker animation */
+    @keyframes flicker {
+      0% { opacity: 1; color: red; }
+      25% { opacity: 0.5; color: yellow; }
+      50% { opacity: 1; color: cyan; }
+      75% { opacity: 0.3; color: lime; }
+      100% { opacity: 1; color: magenta; }
+    }
+
+    /* Smooth color shift */
+    @keyframes colorShift {
+      0% { color: red; }
+      25% { color: orange; }
+      50% { color: yellow; }
+      75% { color: green; }
+      100% { color: cyan; }
+    }
+
+    /* Background image input */
+    #bgInput {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-text" data-text="OOMBIKKOOO">OOMBIKKOOO</div>
+  <div class="sub-text">happy april fools day</div>
+
+  <!-- Background image uploader -->
+  <input type="file" id="bgInput" accept="image/*">
+
+  <script>
+    const input = document.getElementById('bgInput');
+
+    input.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.body.style.backgroundImage = `url('${e.target.result}')`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+</body>
+</html>
